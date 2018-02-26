@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import br.com.x10d.app.R;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
+import br.com.x10d.app.R;
 
 public class TelaBuilder {
 
