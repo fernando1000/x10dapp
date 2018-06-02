@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import br.com.x10d.app.R;
+import br.com.x10d.app.util.Animacao;
 
 public class MainActivity extends Activity {
 

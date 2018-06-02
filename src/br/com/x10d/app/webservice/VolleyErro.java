@@ -2,6 +2,7 @@ package br.com.x10d.app.webservice;
 
 import com.android.volley.VolleyError;
 import android.content.Context;
+import br.com.x10d.app.util.MeuAlerta;
 
 public class VolleyErro {
 

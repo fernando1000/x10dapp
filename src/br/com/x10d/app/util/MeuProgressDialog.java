@@ -1,4 +1,4 @@
-package br.com.x10d.app.webservice;
+package br.com.x10d.app.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;

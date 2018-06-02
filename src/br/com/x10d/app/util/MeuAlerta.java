@@ -1,4 +1,4 @@
-package br.com.x10d.app.webservice;
+package br.com.x10d.app.util;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

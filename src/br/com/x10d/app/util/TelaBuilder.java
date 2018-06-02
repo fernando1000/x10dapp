@@ -1,12 +1,15 @@
-package br.com.x10d.app.view;
+package br.com.x10d.app.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
@@ -32,26 +35,6 @@ public class TelaBuilder {
 		return textView;
 	}
 
-	public TextView criaTextViewCONTEUDO(String texto){
-		
-		TextView textView = new TextView(context);
-		textView.setTextSize(18);
-		textView.setTextColor(Color.BLACK); 
-		textView.setTypeface(textView.getTypeface(), Typeface.ITALIC);
-		textView.setText(texto);	
-		
-		return textView;
-	}
-	public TextView criaTextViewCONTEUDO_qtds(){
-		
-		TextView textView = new TextView(context);
-		textView.setTextSize(12);
-		//textView.setTextColor(Color.BLACK); 
-		
-		return textView;
-	}
-	
-
 	@SuppressLint("NewApi")
 	public Button criaBotao(String texto, LayoutParams lllp){
 
@@ -76,20 +59,6 @@ public class TelaBuilder {
 	    return editText;
 	}
 
-	@SuppressLint("NewApi")
-	public EditText criaEditTextleituraAtual(String texto){
-		
-		LayoutParams lp_MATCH_WRAP = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);			
-
-	    EditText editText = new EditText(context);
-	    editText.setTextSize(20);
-	    editText.setBackground(context.getResources().getDrawable(R.drawable.style_edit_consigaz));    		  
-	    editText.setText(texto);
-	    editText.setLayoutParams(lp_MATCH_WRAP);
-	    
-	    return editText;
-	}
-
 	public LinearLayout criaLinearLayoutTELA(){
 	
 		LinearLayout linearLayout = new LinearLayout(context);
@@ -99,29 +68,55 @@ public class TelaBuilder {
 	
 		return linearLayout;
 	}
+
 	
-	public LinearLayout criaLinearLayoutLINHA(String titulo, TextView tv_conteudo){
+	public LinearLayout criaLinearLayoutColuna(LayoutParams layoutParams){
 		
 		LinearLayout linearLayout = new LinearLayout(context);
-		linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-		linearLayout.addView(criaTextViewTITULO(titulo));
-		linearLayout.addView(tv_conteudo);
-		
+		linearLayout.setOrientation(LinearLayout.VERTICAL);
+		linearLayout.setPadding(10, 0, 10, 0);
+		linearLayout.setLayoutParams(layoutParams);
+
 		return linearLayout;
 	}
-	
-	public LinearLayout criaLinearLayoutLINHAButtonButton(Button b1, Button b2){
+
+	public LinearLayout criaLinearLayoutImageViewTextView(Drawable drawable, String titulo){
 		
 		LinearLayout linearLayout = new LinearLayout(context);
-		linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-		linearLayout.addView(b1);
-		linearLayout.addView(b2);
+		linearLayout.setOrientation(LinearLayout.VERTICAL);
+		
+		ImageView imageView = criaImageView(drawable);
+		
+		LayoutParams lp_MATCH_350 = new LayoutParams(LayoutParams.MATCH_PARENT, 350);			
+					 lp_MATCH_350.setMargins(0, 120, 0, 0);		
+		imageView.setLayoutParams(lp_MATCH_350);
+			
+		linearLayout.addView(imageView);
+		
+		TextView textView = criaTextViewTITULO(titulo);
+				 textView.setGravity(Gravity.CENTER);
+				 textView.setTextSize(25);
+
+		linearLayout.addView(textView);
 		
 		return linearLayout;
 	}
 
-	public LinearLayout criaLinearLayoutLINHAet(String titulo, EditText et_conteudo){
+	private ImageView criaImageView(Drawable drawable) {
 		
+		ImageView imageView = new ImageView(context);
+		imageView.setImageDrawable(drawable);
+		
+		
+		return imageView;
+	}
+
+	public LinearLayout criaLinearLayoutLinha_TV_ET(String titulo, EditText et_conteudo){
+		
+		LayoutParams lp_MATCH_WRAP = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);			
+		//lp_MATCH_WRAP.setMargins(0, 20, 0, 20);		
+		et_conteudo.setLayoutParams(lp_MATCH_WRAP);
+
 		LinearLayout linearLayout = new LinearLayout(context);
 		linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 		linearLayout.addView(criaTextViewTITULO(titulo));
@@ -131,7 +126,7 @@ public class TelaBuilder {
 	}
 
 	@SuppressLint("NewApi")
-	public LinearLayout criaLinearLayoutcomBordaArredondada(){
+	private LinearLayout criaLinearLayoutcomBordaArredondada(){
 		
 		LinearLayout ll_holder = new LinearLayout(context);
 		ll_holder.setOrientation(LinearLayout.VERTICAL);
@@ -145,7 +140,7 @@ public class TelaBuilder {
 		return ll_holder;
 	}
 	
-	public GradientDrawable criaGradientDrawable(int cor){
+	private GradientDrawable criaGradientDrawable(int cor){
 		
 		GradientDrawable drawable = new GradientDrawable();
 		drawable.setShape(GradientDrawable.RECTANGLE);

@@ -1,74 +1,86 @@
 package br.com.x10d.app.webservice;
 
-import org.json.JSONObject;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import br.com.x10d.app.model.Usuario;
+import android.content.Intent;
+import br.com.x10d.app.util.MeuAlerta;
+import br.com.x10d.app.util.MeuProgressDialog;
+import br.com.x10d.app.view.DashboardActivity;
 
 public class AutenticacaoWS {
-	
-	private static final String RESOURCE_AUTENTICACAO_LOGIN = "/web/csp/wescs0402";
+
 	private Context context;
-	private Usuario usuarioEnviadoWS;
 	private RequestQueue requestQueue;
 
-	public AutenticacaoWS(Context _context){
-		
-		context = _context;		
+	public AutenticacaoWS(Context _context) {
+
+		context = _context;
 		requestQueue = VolleySingleton.getInstanciaDoVolleySingleton(_context).getRequestQueue();
 	}
 
 	public void buscaUsuarioWS(String usuario, String senha) {
-	    
-	    final ProgressDialog progressDialog = MeuProgressDialog.criaProgressDialog(context, "Autenticando Usuário");
 
-		String url = IpURL.URL_SERVER_REST.getValor() + RESOURCE_AUTENTICACAO_LOGIN;
-		
-	    usuarioEnviadoWS = new Usuario();	
-		usuarioEnviadoWS.setUsuario(usuario);
-		usuarioEnviadoWS.setSenha(senha);
+		final ProgressDialog progressDialog = MeuProgressDialog.criaProgressDialog(context, "Autenticando Usuário");
 
-		MontaJSONObjectGenerico montaJSONObjectGenerico = new MontaJSONObjectGenerico();
-		
-		JsonObjectRequest jsonObjRequest = new JsonObjectRequest(
+		String url = IpURL.URL_SERVER_REST.getValor() + "/carrinhos/validaUsuario/" + usuario + "/" + senha;
 
-				Request.Method.POST, 
-				url, 
-				montaJSONObjectGenerico.montaJSONObject(usuarioEnviadoWS),
+		NetworkResponseRequest networkResponseRequest = new NetworkResponseRequest(
 
-				new Response.Listener<JSONObject>() {
+				Request.Method.GET, url,
+
+				new Response.Listener<NetworkResponse>() {
 					@Override
-					public void onResponse(JSONObject jSONObjectResposta) {
-	
+					public void onResponse(NetworkResponse networkResponse) {
+
 						MeuProgressDialog.encerraProgressDialog(progressDialog);
 
+						if (networkResponse.statusCode == 200) {
+
+							abreDashboard();
+						} else {
+							new MeuAlerta("Atenção", "Situação inesperada, entre em contato com administrador do sistema", context).meuAlertaOk();
+						}
+						
 					}
-				}, 
-				new Response.ErrorListener() {
+				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError volleyError) {
-						
-						MeuProgressDialog.encerraProgressDialog(progressDialog);
 
-						new VolleyErro().trataErroQueSeraMostratoParaUsuario(volleyError, context);
+						MeuProgressDialog.encerraProgressDialog(progressDialog);
+						
+						try {
+							
+							if(volleyError.toString().contains("Timeout")) {
+								
+								new MeuAlerta("Erro", "Tempo excedido, favor tentar novamente", context).meuAlertaOk();		
+							}else {
+	
+								if (volleyError.networkResponse.statusCode == 401) {
+	
+									new MeuAlerta("Aviso", "Usuário ou senha inválida ", context).meuAlertaOk();
+							
+								} else {
+									new MeuAlerta("Erro", "Erro inesperado, entre em contato com administrador do sistema", context).meuAlertaOk();
+								}
+							}
+							
+						}catch(Exception erro){
+							new MeuAlerta("Erro", "Exceção lançada: "+erro, context).meuAlertaOk();			
+						}
+						
 					}
 				});
-
-		jsonObjRequest.setRetryPolicy(VolleyTimeout.devolveTimeout());
-
-		requestQueue.add(jsonObjRequest);		
+		requestQueue.add(networkResponseRequest);
 	}
 
-	/*
 	private void abreDashboard() {
-		
-		context.startActivity(new Intent(context, ActivityDashboard.class));
-		((ActivityLogin) context).finish();
+
+		context.startActivity(new Intent(context, DashboardActivity.class));
+		//((LoginActivity) context).finish();
 	}
-	*/
 }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import br.com.x10d.app.R;
+import br.com.x10d.app.util.TelaBuilder;
 import br.com.x10d.app.webservice.AutenticacaoWS;
 
 @SuppressLint("InlinedApi")
@@ -65,6 +66,11 @@ public class LoginActivity extends Activity {
 		
 	    ImageView imageView = new ImageView(context);				    
 			      imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.cc));
+			  	     LayoutParams lp_WRAP_WRAP = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);			
+			  		 			  lp_WRAP_WRAP.setMargins(0, 60, 0, 60);		
+	    imageView.setLayoutParams(lp_WRAP_WRAP);
+
+			      
 			      
 		llTela.addView(imageView);
 		llTela.addView(textView_usuario);

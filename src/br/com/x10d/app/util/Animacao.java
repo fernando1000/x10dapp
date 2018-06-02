@@ -1,4 +1,4 @@
-package br.com.x10d.app.view;
+package br.com.x10d.app.util;
 
 import android.content.Context;
 import android.view.View;

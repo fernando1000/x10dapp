@@ -32,10 +32,14 @@ public final class R {
     }
     public static final class drawable {
         public static final int cc=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_launcher_web=0x7f020002;
-        public static final int style_btn_consigaz=0x7f020003;
-        public static final int style_edit_consigaz=0x7f020004;
+        public static final int ic_business_black_24dp=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_launcher_web=0x7f020003;
+        public static final int ic_people_black_24dp=0x7f020004;
+        public static final int ic_schedule_black_24dp=0x7f020005;
+        public static final int ic_settings_black_24dp=0x7f020006;
+        public static final int style_btn_consigaz=0x7f020007;
+        public static final int style_edit_consigaz=0x7f020008;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
