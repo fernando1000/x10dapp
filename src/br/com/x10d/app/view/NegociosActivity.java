@@ -15,6 +15,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import br.com.x10d.app.util.GeraPDF;
@@ -32,6 +33,9 @@ public class NegociosActivity extends Activity{
 		
 		TelaBuilder meusWidgetsBuilder = new TelaBuilder(context);
 		
+		ScrollView scrollView = new ScrollView(context); 
+		scrollView.setBackgroundColor(Color.WHITE);
+
 		LinearLayout llTela = meusWidgetsBuilder.criaLinearLayoutTELA();
 		llTela.setBackgroundColor(Color.WHITE);
 
@@ -89,7 +93,9 @@ public class NegociosActivity extends Activity{
 		
 		llTela.addView(button_gerarPDF);
 					
-		setContentView(llTela);
+		scrollView.addView(llTela);
+		
+		setContentView(scrollView);
 	}
 
 	private void acaoAposCliqueNoBotaoGerarPDF(String comodosDaCasa, String ruaNumeroCasa, 
