@@ -93,7 +93,7 @@ public class LoginActivity extends Activity {
 		});
 
 		llTela.addView(imageView);
-		llTela.addView(textView_usuario);		
+		llTela.addView(textView_usuario);			
 		llTela.addView(editText_usuario);
 		llTela.addView(textView_senha);
 		llTela.addView(editText_senha);	

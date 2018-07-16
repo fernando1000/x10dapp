@@ -3,9 +3,9 @@
 	<corners android:radius="5dp" />
 
 	<stroke
-		android:width="5dp"
-		android:color="@color/azul_consigaz" />
+		android:width="1dp"
+		android:color="@color/verde3" />
 
-	<solid android:color="#FFCACA" />
+	<solid android:color="@color/branco" />
 
 </shape>

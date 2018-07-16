@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
  
-    <color name="vermelho">#FF0000</color>
-    <color name="verdeEscuro">  #063006</color>
-    <color name="redFranquia">#FF6600</color>
+    <color name="verde1">#567A58</color>
+    <color name="verde2">#4D8358</color>
+    <color name="verde3">#366540</color>
+  	<color name="verde0">#7BA281</color>
+  	<color name="branco">#FFFFFF</color>
     <color name="transparenteNegro">#95000000</color>
-    <color name="azul_consigaz">#003D66</color>
-    <color name="azul_claro_consigaz">#CCE0FF</color>
-    <color name="azul_ardosia">#007FFF</color>
    
 </resources>

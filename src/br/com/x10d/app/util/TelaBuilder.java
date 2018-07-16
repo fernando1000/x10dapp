@@ -1,6 +1,5 @@
 package br.com.x10d.app.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -28,18 +27,17 @@ public class TelaBuilder {
 		
 		TextView textView = new TextView(context);
 		textView.setTextSize(20);
-		textView.setTextColor(context.getResources().getColor(R.color.azul_consigaz)); 
+		textView.setTextColor(context.getResources().getColor(R.color.verde3)); 
 		textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
 		textView.setText(texto);	
 
 		return textView;
 	}
 
-	@SuppressLint("NewApi")
 	public Button criaBotao(String texto, LayoutParams lllp){
 
 		Button button = new Button(context);
-		button.setBackground(context.getResources().getDrawable(R.drawable.style_btn_consigaz));
+		button.setBackground(context.getResources().getDrawable(R.drawable.style_btn_x10d));
 		button.setText(texto);
 		button.setTextColor(Color.WHITE);
 		button.setTextSize(24);
@@ -48,12 +46,11 @@ public class TelaBuilder {
 		return button;
 	}
 
-	@SuppressLint("NewApi")
 	public EditText criaEditText(String texto){
 	
 	    EditText editText = new EditText(context);
 	    editText.setTextSize(20);
-	    editText.setBackground(context.getResources().getDrawable(R.drawable.style_edit_consigaz));    		  
+	    editText.setBackground(context.getResources().getDrawable(R.drawable.style_edit_x10d));    		  
 	    editText.setText(texto);
 	    
 	    return editText;
@@ -63,7 +60,7 @@ public class TelaBuilder {
 	
 		LinearLayout linearLayout = new LinearLayout(context);
 		linearLayout.setOrientation(LinearLayout.VERTICAL);
-		linearLayout.setBackgroundColor(context.getResources().getColor(R.color.azul_claro_consigaz));
+		linearLayout.setBackgroundColor(context.getResources().getColor(R.color.transparenteNegro));
 		linearLayout.setPadding(10, 0, 10, 0);
 	
 		return linearLayout;
@@ -125,7 +122,6 @@ public class TelaBuilder {
 		return linearLayout;
 	}
 
-	@SuppressLint("NewApi")
 	private LinearLayout criaLinearLayoutcomBordaArredondada(){
 		
 		LinearLayout ll_holder = new LinearLayout(context);
